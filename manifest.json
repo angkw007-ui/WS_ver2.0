@@ -1,0 +1,15 @@
+{
+  "name": "캘린더 스케줄러",
+  "short_name": "스케줄러",
+  "start_url": "./calendar_scheduler_v2.html",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#4361ee",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2693/2693507.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
