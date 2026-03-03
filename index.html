@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Monthly Scheduler</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2c5282">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="스케줄러">
+
+<!-- Apple touch icon (inline SVG→PNG not possible; use base64 png) -->
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF0WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4wLWMwMDEgNzkuMTQ2MDI5LCAyMDIzLzAyLzA5LTE2OjQ5OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjQuNSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjMtMDktMjZUMTM6Mzg6NTMrMDk6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjMtMDktMjZUMTM6Mzg6NTMrMDk6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIzLTA5LTI2VDEzOjM4OjUzKzA5OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA0ZmMxNzE2LTQ0NzUtNDg4Yy1iZTI0LWM5Zjc5NzUyYWZkYiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjYzMzM1MTJmLTJkNzUtMTE0ZS1hZTgzLWYxNDNhMGVlMzIwZCIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjg1ZWZlNmZjLTY0NzctNGNiMy04YTliLWFhOTY1NjlkNmM2NiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjg1ZWZlNmZjLTY0NzctNGNiMy04YTliLWFhOTY1NjlkNmM2NiIgc3RFdnQ6d2hlbj0iMjAyMy0wOS0yNlQxMzozODo1MyswOTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI0LjUgKE1hY2ludG9zaCkiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjA0ZmMxNzE2LTQ0NzUtNDg4Yy1iZTI0LWM5Zjc5NzUyYWZkYiIgc3RFdnQ6d2hlbj0iMjAyMy0wOS0yNlQxMzozODo1MyswOTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI0LjUgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -409,7 +421,59 @@ body {
 @keyframes spin { to { transform:rotate(360deg); } }
 .spin { display:inline-block; animation:spin 0.8s linear infinite; }
 
-/* ── RESPONSIVE MOBILE ──────────────── */
+/* ── 홈 화면 설치 배너 ──────────────── */
+.install-bar {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--accent); color: #fff;
+  padding: 12px 18px;
+  align-items: center; justify-content: space-between;
+  gap: 12px; z-index: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 2px 12px rgba(44,82,130,0.3);
+}
+.install-bar.show { display: flex; }
+.install-bar-left { display: flex; align-items: center; gap: 10px; }
+.install-bar-icon { font-size: 22px; }
+.install-bar-txt  { line-height: 1.4; }
+.install-bar-txt strong { display: block; font-size: 13px; }
+.install-bar-txt span   { font-size: 11px; opacity: 0.85; }
+.install-bar-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.ib-btn {
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif; border: none;
+  transition: all 0.15s;
+}
+.ib-install { background: #fff; color: var(--accent); }
+.ib-install:active { background: var(--accent2); }
+.ib-close   { background: rgba(255,255,255,0.2); color: #fff; }
+.ib-close:active { background: rgba(255,255,255,0.3); }
+
+/* iOS 안내 (Safari 전용) */
+.ios-guide {
+  display: none;
+  position: fixed; bottom: 70px; left: 16px; right: 16px;
+  background: #1e293b; color: #fff;
+  border-radius: 14px; padding: 16px 18px;
+  z-index: 600; font-size: 13px; line-height: 1.8;
+  font-family: 'Noto Sans KR', sans-serif;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.ios-guide.show { display: block; }
+.ios-guide-title { font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+.ios-guide-step  { display: flex; align-items: center; gap: 8px; margin-bottom:5px; }
+.ios-guide-num   { background: var(--accent); color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; }
+.ios-guide-close { position:absolute; top:12px; right:14px; background:none; border:none; color:rgba(255,255,255,0.6); font-size:18px; cursor:pointer; padding:0; }
+
+/* 앱 설치됐을 때 (standalone) — 상단 여백 제거 */
+@media (display-mode: standalone) {
+  .install-bar { display: none !important; }
+  .mob-nav { padding-bottom: env(safe-area-inset-bottom, 0); }
+  body { padding-top: env(safe-area-inset-top, 0); }
+}
+
 @media (max-width:640px) {
   body { overflow:hidden; }
   .app { padding:0; flex-direction:column; height:100%; gap:0; padding-bottom:56px; }
@@ -471,11 +535,37 @@ body {
   </div>
 </div>
 
+<!-- 홈 화면 추가 배너 (Android) -->
+<div class="install-bar" id="installBtn">
+  <div class="install-bar-left">
+    <div class="install-bar-icon">📅</div>
+    <div class="install-bar-txt">
+      <strong>홈 화면에 추가</strong>
+      <span>앱처럼 바로 실행할 수 있어요</span>
+    </div>
+  </div>
+  <div class="install-bar-btns">
+    <button class="ib-btn ib-install" onclick="installApp()">설치</button>
+    <button class="ib-btn ib-close"   onclick="document.getElementById('installBtn').classList.remove('show')">✕</button>
+  </div>
+</div>
+
+<!-- iOS 홈 화면 추가 안내 -->
+<div class="ios-guide" id="iosGuide">
+  <button class="ios-guide-close" onclick="document.getElementById('iosGuide').classList.remove('show')">×</button>
+  <div class="ios-guide-title">📱 홈 화면에 추가하기 (iPhone)</div>
+  <div class="ios-guide-step"><div class="ios-guide-num">1</div><span>Safari 하단 <strong>공유 버튼 □↑</strong> 탭</span></div>
+  <div class="ios-guide-step"><div class="ios-guide-num">2</div><span><strong>"홈 화면에 추가"</strong> 선택</span></div>
+  <div class="ios-guide-step"><div class="ios-guide-num">3</div><span><strong>"추가"</strong> 탭 → 홈 화면에 아이콘 생성</span></div>
+  <div style="margin-top:8px;font-size:11px;opacity:0.7;">앱처럼 전체 화면으로 실행됩니다</div>
+</div>
+
 <!-- Mobile nav -->
 <nav class="mob-nav">
   <button class="mob-nav-btn" onclick="doSync()"><span class="mob-nav-icon">↻</span>동기화</button>
   <button class="mob-nav-btn" onclick="openMobMemo()"><span class="mob-nav-icon">📝</span>메모</button>
   <button class="mob-nav-btn" onclick="openCfg()"><span class="mob-nav-icon">⚙️</span>설정</button>
+  <button class="mob-nav-btn" id="iosAddBtn" onclick="showIosGuide()" style="display:none"><span class="mob-nav-icon">＋</span>홈추가</button>
 </nav>
 
 <!-- Desktop popup -->
@@ -967,7 +1057,9 @@ function closeCfg(){ document.getElementById('cfgOv').classList.remove('on'); }
 function saveCfg(){
   sheetsUrl=document.getElementById('cfgUrl').value.trim();
   localStorage.setItem('sch_url',sheetsUrl);
-  closeCfg(); if(sheetsUrl)setSyncSt('ok'); toast('설정 저장됨','ok');
+  closeCfg();
+  if(sheetsUrl){ setSyncSt('ok'); startAutoSync(); }
+  toast('설정 저장됨 — 자동 동기화 시작','ok');
 }
 
 // ── HELPERS ──────────────────────────────────────────
@@ -991,6 +1083,117 @@ function toast(msg,type=''){
 }
 function pad(n){ return String(n).padStart(2,'0'); }
 window.addEventListener('resize',()=>{ closePopup(); renderCal(); });
+
+// ════════════════════════════════════
+// PWA — Service Worker 등록
+// ════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+
+// ════════════════════════════════════
+// 자동 동기화 — 앱 포커스 시 + 주기적
+// ════════════════════════════════════
+let autoSyncTimer = null;
+
+function startAutoSync() {
+  if (!sheetsUrl) return;
+  // 즉시 1회
+  doSyncSilent();
+  // 5분마다 반복
+  clearInterval(autoSyncTimer);
+  autoSyncTimer = setInterval(doSyncSilent, 5 * 60 * 1000);
+}
+
+async function doSyncSilent() {
+  if (!sheetsUrl) return;
+  try {
+    const rows = [['date','no','text']];
+    Object.entries(events).forEach(([d,arr]) =>
+      arr.forEach((ev,i) => rows.push([d, i+1, ev.text]))
+    );
+    rows.push(['__memo__','',memo]);
+    const r = await fetch(sheetsUrl, {
+      method: 'POST',
+      body: JSON.stringify(rows),
+      headers: {'Content-Type':'application/json'}
+    });
+    if (!r.ok) throw 0;
+    setSyncSt('ok');
+    // 싱크 시각 업데이트
+    const now = new Date();
+    const t = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+    document.getElementById('syncTxt').textContent = `${t} 동기화됨`;
+  } catch {
+    setSyncSt('err');
+  }
+}
+
+// 앱이 포그라운드로 돌아올 때 동기화
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && sheetsUrl) {
+    doSyncSilent();
+  }
+});
+
+// URL 저장 시 자동 동기화 시작
+const _origSaveCfg = saveCfg;
+// (saveCfg 함수 내부에서 startAutoSync 호출되도록 오버라이드)
+
+// ════════════════════════════════════
+// 홈 화면 추가 배너 (Android Chrome)
+// ════════════════════════════════════
+let deferredPrompt = null;
+
+function installApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    deferredPrompt = null;
+    const btn = document.getElementById('installBtn');
+    if (btn) btn.classList.remove('show');
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.classList.remove('show');
+  toast('홈 화면에 추가됐습니다 🎉', 'ok');
+});
+
+// ════════════════════════════════════
+// iOS 감지 — Safari에서 홈 화면 추가 버튼 표시
+// ════════════════════════════════════
+(function detectIOS() {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  if (isIOS && !isStandalone) {
+    // iOS Safari: 홈 추가 버튼 표시
+    const btn = document.getElementById('iosAddBtn');
+    if (btn) btn.style.display = 'flex';
+  }
+})();
+
+function showIosGuide() {
+  document.getElementById('iosGuide').classList.add('show');
+}
+
+// install bar show (after beforeinstallprompt fires)
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.classList.add('show');
+});
+
+// ════════════════════════════════════
+// 초기 자동 동기화 시작 (URL 있을 때)
+// ════════════════════════════════════
+if (sheetsUrl) startAutoSync();
 </script>
 </body>
 </html>
