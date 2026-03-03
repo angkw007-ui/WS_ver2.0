@@ -9,507 +9,378 @@
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
 :root {
-  --bg:        #f0f2f5;
-  --white:     #ffffff;
-  --cell:      #fafafa;
-  --cell-hov:  #f4f6f9;
-  --today-bg:  #e8f0fe;
-  --border:    #dde1e7;
-  --border2:   #eaedf1;
-  --text:      #111111;
-  --text2:     #555555;
-  --text3:     #aaaaaa;
-  --accent:    #2c5282;
-  --accent2:   #dbeafe;
-  --sun:       #c0392b;
-  --sat:       #2980b9;
-  --dot:       #2c5282;
-  --red:       #e74c3c;
-  --shadow:    0 4px 24px rgba(0,0,0,0.10);
-  --radius:    16px;
+  --bg:       #f0f2f5;
+  --white:    #ffffff;
+  --cell:     #fafafa;
+  --cell-hov: #f4f6f9;
+  --today-bg: #e8f0fe;
+  --border:   #dde1e7;
+  --border2:  #eaedf1;
+  --text:     #111111;
+  --text2:    #555555;
+  --text3:    #aaaaaa;
+  --accent:   #2c5282;
+  --accent2:  #dbeafe;
+  --sun:      #c0392b;
+  --sat:      #2980b9;
+  --dot:      #2c5282;
+  --red:      #e74c3c;
+  --shadow:   0 4px 24px rgba(0,0,0,0.10);
+  --radius:   16px;
 }
 
-html { height: 100%; }
+html { height:100%; }
 body {
-  height: 100%;
-  background: var(--bg);
-  font-family: 'Noto Sans KR', sans-serif;
-  color: var(--text);
-  overflow: hidden;
+  height:100%; background:var(--bg);
+  font-family:'Noto Sans KR',sans-serif;
+  color:var(--text); overflow:hidden;
 }
 
-/* ════════════════════════════════════
-   DESKTOP LAYOUT
-════════════════════════════════════ */
+/* ── APP LAYOUT ────────────────────── */
 .app {
-  display: flex;
-  height: 100vh;
-  padding: 16px;
-  gap: 14px;
+  display:flex; height:100vh;
+  padding:16px; gap:14px;
 }
 
-/* ── CALENDAR PANEL ──────────────── */
+/* ── CALENDAR PANEL ─────────────────── */
 .cal-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  min-width: 0;
-  position: relative;
+  flex:1; display:flex; flex-direction:column;
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow);
+  overflow:hidden; min-width:0; position:relative;
 }
 
 .cal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 18px 11px;
-  border-bottom: 1px solid var(--border2);
-  flex-shrink: 0;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:13px 18px 11px;
+  border-bottom:1px solid var(--border2); flex-shrink:0;
 }
-.cal-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px; font-weight: 600;
-  color: var(--text);
-}
-.cal-title em {
-  font-style: normal;
-  font-weight: 300;
-  color: var(--text2);
-  margin-left: 6px;
-  font-size: 13px;
-}
-.head-right { display: flex; align-items: center; gap: 6px; }
+.cal-title { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--text); }
+.cal-title em { font-style:normal; font-weight:300; color:var(--text2); margin-left:6px; font-size:13px; }
+.head-right { display:flex; align-items:center; gap:6px; }
 
 .nav-btn {
-  background: var(--cell);
-  border: 1px solid var(--border2);
-  color: var(--text2);
-  width: 28px; height: 28px;
-  border-radius: 8px;
-  cursor: pointer; font-size: 15px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s;
+  background:var(--cell); border:1px solid var(--border2); color:var(--text2);
+  width:28px; height:28px; border-radius:8px; cursor:pointer; font-size:15px;
+  display:flex; align-items:center; justify-content:center; transition:all 0.15s;
 }
-.nav-btn:hover { background: var(--accent2); border-color: var(--accent); color: var(--accent); }
+.nav-btn:hover { background:var(--accent2); border-color:var(--accent); color:var(--accent); }
 
 .today-pill {
-  background: var(--cell);
-  border: 1px solid var(--border2);
-  color: var(--text2);
-  padding: 4px 11px;
-  border-radius: 20px;
-  font-size: 11px; cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  transition: all 0.15s;
+  background:var(--cell); border:1px solid var(--border2); color:var(--text2);
+  padding:4px 11px; border-radius:20px; font-size:11px; cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif; transition:all 0.15s;
 }
-.today-pill:hover { background: var(--accent2); border-color: var(--accent); color: var(--accent); }
+.today-pill:hover { background:var(--accent2); border-color:var(--accent); color:var(--accent); }
 
-/* Day labels */
 .dow-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  padding: 6px 8px 0;
-  flex-shrink: 0;
+  display:grid; grid-template-columns:repeat(7,1fr);
+  padding:6px 8px 0; flex-shrink:0;
 }
 .dow {
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: 1px; text-transform: uppercase;
-  color: var(--text3); padding: 4px 0;
+  text-align:center; font-family:'Inter',sans-serif; font-size:10px;
+  font-weight:400; letter-spacing:1px; text-transform:uppercase;
+  color:var(--text3); padding:4px 0;
 }
-.dow:first-child { color: var(--sun); }
-.dow:last-child  { color: var(--sat); }
+.dow:first-child { color:var(--sun); }
+.dow:last-child  { color:var(--sat); }
 
-/* Grid */
 .cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: 3px;
-  flex: 1; padding: 4px 8px 8px;
-  min-height: 0;
+  display:grid; grid-template-columns:repeat(7,1fr);
+  grid-template-rows:repeat(6,1fr);
+  gap:3px; flex:1; padding:4px 8px 8px; min-height:0;
 }
 
-/* ── CELL ────────────────────────── */
+/* ── CELL ───────────────────────────── */
 .cell {
-  background: var(--cell);
-  border: 1px solid transparent;
-  border-radius: 8px;
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  transition: background 0.12s, border-color 0.12s;
-  cursor: pointer; position: relative;
+  background:var(--cell); border:1px solid transparent;
+  border-radius:8px; display:flex; flex-direction:column;
+  overflow:hidden; transition:background 0.12s,border-color 0.12s;
+  cursor:pointer; position:relative;
 }
-.cell:hover  { background: var(--cell-hov); border-color: var(--border2); }
-.cell.other  { opacity: 0.38; }
-.cell.is-today {
-  background: var(--today-bg);
-  border-color: rgba(44,82,130,0.3);
-}
+.cell:hover  { background:var(--cell-hov); border-color:var(--border2); }
+.cell.other  { opacity:0.38; }
+.cell.is-today { background:var(--today-bg); border-color:rgba(44,82,130,0.3); }
 
 .cell-top {
-  padding: 4px 5px 1px;
-  display: flex; align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
+  padding:4px 5px 1px; display:flex; align-items:center;
+  justify-content:space-between; flex-shrink:0;
 }
 .dn {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px; font-weight: 400;
-  color: var(--text2);
-  min-width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:400;
+  color:var(--text2); min-width:20px; height:20px;
+  display:flex; align-items:center; justify-content:center; border-radius:50%;
 }
-.cell.is-today .dn { background: var(--accent); color: #fff; font-weight: 600; }
-.cell.sun .dn  { color: var(--sun); }
-.cell.sat .dn  { color: var(--sat); }
-.cell.other .dn { color: var(--text3); }
+.cell.is-today .dn { background:var(--accent); color:#fff; font-weight:600; }
+.cell.sun .dn  { color:var(--sun); }
+.cell.sat .dn  { color:var(--sat); }
+.cell.other .dn { color:var(--text3); }
 
 .cell-body {
-  flex: 1; overflow: hidden;
-  padding: 1px 4px 3px;
-  display: flex; flex-direction: column;
-  gap: 1px; min-height: 0;
+  flex:1; overflow:hidden; padding:1px 4px 3px;
+  display:flex; flex-direction:column; gap:1px; min-height:0;
 }
 
+/* Schedule line in cell (preview) */
 .sl {
-  display: flex; align-items: center; gap: 3px;
-  border-radius: 3px; padding: 1px 2px; min-height: 14px;
+  display:flex; align-items:center; gap:2px;
+  border-radius:3px; padding:1px 2px; min-height:14px;
 }
-.sl-dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--dot); flex-shrink: 0;
+.sl-num {
+  font-family:'Inter',sans-serif; font-size:8px; font-weight:600;
+  color:var(--accent); min-width:12px; flex-shrink:0; line-height:1;
 }
 .sl-txt {
-  flex: 1; font-size: 9.5px;
-  color: var(--text);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  line-height: 1.4;
+  flex:1; font-size:9.5px; color:var(--text);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.4;
 }
-.more-lbl { font-size: 9px; color: var(--text3); padding: 0 4px; }
+.more-lbl { font-size:9px; color:var(--text3); padding:0 4px; }
 
 /* Sync bar */
 .sync-bar {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  display: flex; align-items: center; justify-content: flex-end;
-  gap: 8px; padding: 6px 14px;
-  background: #f8f9fb;
-  border-top: 1px solid var(--border2);
+  position:absolute; bottom:0; left:0; right:0;
+  display:flex; align-items:center; justify-content:flex-end;
+  gap:8px; padding:6px 14px; background:#f8f9fb;
+  border-top:1px solid var(--border2);
 }
-.sync-ind {
-  display: flex; align-items: center; gap: 4px;
-  font-family: 'Inter', sans-serif; font-size: 10px; color: var(--text3);
-}
-.sync-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text3); }
-.sync-dot.ok  { background: #16a34a; }
-.sync-dot.err { background: var(--red); }
+.sync-ind { display:flex; align-items:center; gap:4px; font-family:'Inter',sans-serif; font-size:10px; color:var(--text3); }
+.sync-dot { width:5px; height:5px; border-radius:50%; background:var(--text3); }
+.sync-dot.ok  { background:#16a34a; }
+.sync-dot.err { background:var(--red); }
 .sbar-btn {
-  background: none; border: 1px solid var(--border2);
-  color: var(--text2); padding: 3px 10px;
-  border-radius: 10px; font-size: 10px; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: all 0.15s;
-  display: flex; align-items: center; gap: 4px;
+  background:none; border:1px solid var(--border2); color:var(--text2);
+  padding:3px 10px; border-radius:10px; font-size:10px; cursor:pointer;
+  font-family:'Inter',sans-serif; transition:all 0.15s;
+  display:flex; align-items:center; gap:4px;
 }
-.sbar-btn:hover { background: var(--accent2); border-color: var(--accent); color: var(--accent); }
+.sbar-btn:hover { background:var(--accent2); border-color:var(--accent); color:var(--accent); }
 
-/* ── MEMO PANEL (desktop sidebar) ── */
+/* ── MEMO PANEL ─────────────────────── */
 .memo-panel {
-  width: 230px; flex-shrink: 0;
-  display: flex; flex-direction: column;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  width:230px; flex-shrink:0; display:flex; flex-direction:column;
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
 }
 .mp-head {
-  padding: 13px 16px 10px;
-  border-bottom: 1px solid var(--border2);
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: space-between;
+  padding:13px 16px 10px; border-bottom:1px solid var(--border2);
+  flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
 }
-.mp-title { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); }
-.mp-save  { font-size: 10px; color: var(--text3); font-family: 'Inter', sans-serif; transition: color 0.3s; }
-.mp-save.flash { color: var(--accent); }
+.mp-title { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--text); }
+.mp-save  { font-size:10px; color:var(--text3); font-family:'Inter',sans-serif; transition:color 0.3s; }
+.mp-save.flash { color:var(--accent); }
 .memo-ta {
-  flex: 1; padding: 14px 16px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 12.5px; line-height: 1.85;
-  border: none; outline: none; resize: none;
-  background: transparent; color: var(--text);
-  caret-color: var(--accent);
+  flex:1; padding:14px 16px;
+  font-family:'Noto Sans KR',sans-serif; font-size:12.5px; line-height:1.85;
+  border:none; outline:none; resize:none; background:transparent; color:var(--text);
+  caret-color:var(--accent);
 }
-.memo-ta::placeholder { color: var(--text3); }
-.memo-ta::-webkit-scrollbar { width: 3px; }
-.memo-ta::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.memo-ta::placeholder { color:var(--text3); }
+.memo-ta::-webkit-scrollbar { width:3px; }
+.memo-ta::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 
 /* ════════════════════════════════════
-   DAY DETAIL POPUP (desktop)
+   DAY DETAIL POPUP (desktop + mobile)
 ════════════════════════════════════ */
 .day-popup {
-  display: none; position: fixed; z-index: 300;
-  width: 264px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-  overflow: hidden;
+  display:none; position:fixed; z-index:300;
+  width:300px; background:var(--white);
+  border:1px solid var(--border); border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.13); overflow:hidden;
 }
-.day-popup.show { display: block; animation: popIn 0.14s ease; }
+.day-popup.show { display:block; animation:popIn 0.14s ease; }
 @keyframes popIn {
-  from { opacity:0; transform: scale(0.95) translateY(-4px); }
-  to   { opacity:1; transform: scale(1) translateY(0); }
+  from { opacity:0; transform:scale(0.95) translateY(-4px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
 }
 
 .dp-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 11px 14px 9px;
-  background: #f8f9fb;
-  border-bottom: 1px solid var(--border2);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:11px 14px 9px; background:#f8f9fb;
+  border-bottom:1px solid var(--border2);
 }
-.dp-date {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 600; color: var(--text);
-}
-.dp-date span { font-size: 11px; font-weight: 400; color: var(--text3); margin-left: 5px; }
+.dp-date { font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--text); }
+.dp-date span { font-size:11px; font-weight:400; color:var(--text3); margin-left:5px; }
 .dp-close {
-  background: none; border: none; color: var(--text3);
-  cursor: pointer; font-size: 17px;
-  width: 24px; height: 24px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; transition: all 0.1s; padding: 0;
+  background:none; border:none; color:var(--text3); cursor:pointer;
+  font-size:17px; width:24px; height:24px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; transition:all 0.1s; padding:0;
 }
-.dp-close:hover { background: #ebebeb; color: var(--text); }
+.dp-close:hover { background:#ebebeb; color:var(--text); }
 
+/* Drag list */
 .dp-list {
-  padding: 8px 10px; max-height: 230px; overflow-y: auto;
+  padding:6px 10px; max-height:280px; overflow-y:auto;
 }
-.dp-list::-webkit-scrollbar { width: 3px; }
-.dp-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-.dp-empty { text-align:center; font-size:12px; color:var(--text3); padding:16px 0 8px; }
+.dp-list::-webkit-scrollbar { width:3px; }
+.dp-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+.dp-empty { text-align:center; font-size:12px; color:var(--text3); padding:18px 0 8px; }
 
 .dp-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 6px; border-radius: 8px; transition: background 0.1s;
+  display:flex; align-items:flex-start; gap:8px;
+  padding:7px 6px; border-radius:8px;
+  transition:background 0.1s; cursor:default;
+  border:1.5px solid transparent;
+  margin-bottom:2px;
 }
-.dp-item:hover { background: #f4f6f9; }
-.dp-item:hover .dp-del { opacity: 1; }
-.dp-bullet { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
-.dp-txt {
-  flex: 1; font-size: 12.5px;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: var(--text); line-height: 1.5; word-break: break-all;
-  cursor: text;
-}
-.dp-del {
-  opacity: 0; background: none; border: none;
-  color: var(--text3); cursor: pointer;
-  font-size: 13px; width: 18px; height: 18px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; flex-shrink: 0; transition: all 0.1s; padding: 0;
-}
-.dp-del:hover { background: #fee2e2; color: var(--red); }
+.dp-item:hover { background:#f4f6f9; }
+.dp-item:hover .dp-del { opacity:1; }
+.dp-item.drag-over { border-color:var(--accent); background:var(--accent2); }
+.dp-item.dragging  { opacity:0.4; }
 
+/* Drag handle */
+.dp-drag {
+  color:var(--text3); font-size:13px; cursor:grab;
+  padding:1px 0; flex-shrink:0; user-select:none;
+  display:flex; align-items:center; line-height:1;
+  transition:color 0.1s;
+}
+.dp-drag:hover { color:var(--text2); }
+.dp-drag:active { cursor:grabbing; }
+
+/* Serial number */
+.dp-num {
+  font-family:'Inter',sans-serif; font-size:10px; font-weight:700;
+  color:var(--accent); background:var(--accent2);
+  width:18px; height:18px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:1px;
+}
+
+.dp-txt {
+  flex:1; font-size:12.5px; font-family:'Noto Sans KR',sans-serif;
+  color:var(--text); line-height:1.55; word-break:break-all; cursor:text;
+}
+
+.dp-del {
+  opacity:0; background:none; border:none; color:var(--text3); cursor:pointer;
+  font-size:13px; width:18px; height:18px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; flex-shrink:0; transition:all 0.1s; padding:0;
+}
+.dp-del:hover { background:#fee2e2; color:var(--red); }
+
+/* Add row */
 .dp-add-row {
-  padding: 7px 10px 10px;
-  border-top: 1px solid var(--border2);
-  display: flex; gap: 6px; align-items: center;
+  padding:7px 10px 10px; border-top:1px solid var(--border2);
+  display:flex; gap:6px; align-items:center;
 }
 .dp-inp {
-  flex: 1; border: 1px solid var(--border); border-radius: 7px;
-  padding: 7px 10px; font-size: 12px;
-  font-family: 'Noto Sans KR', sans-serif; color: var(--text);
-  outline: none; transition: border-color 0.15s; background: #fafafa;
+  flex:1; border:1px solid var(--border); border-radius:7px;
+  padding:7px 10px; font-size:12px;
+  font-family:'Noto Sans KR',sans-serif; color:var(--text);
+  outline:none; transition:border-color 0.15s; background:#fafafa;
 }
-.dp-inp:focus { border-color: var(--accent); background: #fff; }
-.dp-inp::placeholder { color: var(--text3); }
+.dp-inp:focus { border-color:var(--accent); background:#fff; }
+.dp-inp::placeholder { color:var(--text3); }
 .dp-add-btn {
-  background: var(--accent); border: none; color: #fff;
-  width: 30px; height: 30px; border-radius: 7px;
-  font-size: 20px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: background 0.15s; line-height: 1;
+  background:var(--accent); border:none; color:#fff;
+  width:30px; height:30px; border-radius:7px; font-size:20px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background 0.15s; line-height:1;
 }
-.dp-add-btn:hover { background: #1e3a6e; }
+.dp-add-btn:hover { background:#1e3a6e; }
 
-/* ════════════════════════════════════
-   BOTTOM SHEET (mobile popup)
-════════════════════════════════════ */
+/* ── MOBILE ─────────────────────────── */
 .sheet-backdrop {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.28);
-  z-index: 400;
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.28); z-index:400;
 }
-.sheet-backdrop.show { display: block; }
+.sheet-backdrop.show { display:block; }
 
 .bottom-sheet {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--white);
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -4px 30px rgba(0,0,0,0.14);
-  z-index: 401;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
-  max-height: 75vh;
-  display: flex; flex-direction: column;
+  position:fixed; bottom:0; left:0; right:0;
+  background:var(--white); border-radius:20px 20px 0 0;
+  box-shadow:0 -4px 30px rgba(0,0,0,0.14); z-index:401;
+  transform:translateY(100%);
+  transition:transform 0.3s cubic-bezier(0.32,0.72,0,1);
+  max-height:78vh; display:flex; flex-direction:column;
 }
-.bottom-sheet.show { transform: translateY(0); }
-
-.bs-handle {
-  width: 36px; height: 4px; border-radius: 2px;
-  background: var(--border2); margin: 10px auto 0;
-  flex-shrink: 0;
-}
+.bottom-sheet.show { transform:translateY(0); }
+.bs-handle { width:36px; height:4px; border-radius:2px; background:var(--border2); margin:10px auto 0; flex-shrink:0; }
 .bs-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 20px 10px; flex-shrink: 0;
-  border-bottom: 1px solid var(--border2);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px 10px; flex-shrink:0; border-bottom:1px solid var(--border2);
 }
-.bs-date {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px; font-weight: 600; color: var(--text);
-}
-.bs-date span { font-size: 12px; font-weight: 400; color: var(--text3); margin-left: 6px; }
-.bs-close {
-  background: #f0f0f0; border: none; color: var(--text2);
-  width: 28px; height: 28px; border-radius: 50%;
-  font-size: 16px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
+.bs-date { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--text); }
+.bs-date span { font-size:12px; font-weight:400; color:var(--text3); margin-left:6px; }
+.bs-close { background:#f0f0f0; border:none; color:var(--text2); width:28px; height:28px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 
-.bs-list {
-  flex: 1; overflow-y: auto; padding: 10px 16px;
-  -webkit-overflow-scrolling: touch;
-}
+.bs-list { flex:1; overflow-y:auto; padding:8px 16px; -webkit-overflow-scrolling:touch; }
 .bs-empty { text-align:center; font-size:13px; color:var(--text3); padding:20px 0 10px; }
 
+/* Mobile list item */
 .bs-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 11px 10px; border-radius: 10px;
-  border-bottom: 1px solid var(--border2);
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 8px; border-radius:10px;
+  border-bottom:1px solid var(--border2); margin-bottom:2px;
+  transition:background 0.1s;
 }
-.bs-item:last-child { border-bottom: none; }
-.bs-bullet { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+.bs-item:last-child { border-bottom:none; }
+.bs-item.drag-over  { border-color:var(--accent); background:var(--accent2); border-bottom:1.5px solid var(--accent); }
+.bs-item.dragging   { opacity:0.4; }
+
+.bs-drag { color:var(--text3); font-size:16px; cursor:grab; padding:2px 0; flex-shrink:0; user-select:none; }
+.bs-drag:active { cursor:grabbing; }
+
+.bs-num {
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:700;
+  color:var(--accent); background:var(--accent2);
+  width:20px; height:20px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+}
+
 .bs-txt {
-  flex: 1; font-size: 14px;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: var(--text); line-height: 1.5; word-break: break-all;
+  flex:1; font-size:14px; font-family:'Noto Sans KR',sans-serif;
+  color:var(--text); line-height:1.55; word-break:break-all;
 }
-.bs-del {
-  background: none; border: none; color: var(--text3);
-  font-size: 18px; cursor: pointer; padding: 4px 6px;
-  border-radius: 6px; flex-shrink: 0; transition: all 0.1s;
-}
-.bs-del:active { background: #fee2e2; color: var(--red); }
+.bs-del { background:none; border:none; color:var(--text3); font-size:18px; cursor:pointer; padding:4px 6px; border-radius:6px; flex-shrink:0; transition:all 0.1s; }
+.bs-del:active { background:#fee2e2; color:var(--red); }
 
 .bs-add-row {
-  padding: 10px 16px 16px;
-  border-top: 1px solid var(--border2);
-  display: flex; gap: 8px; align-items: center;
-  flex-shrink: 0;
+  padding:10px 16px 16px; border-top:1px solid var(--border2);
+  display:flex; gap:8px; align-items:center; flex-shrink:0;
 }
 .bs-inp {
-  flex: 1; border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 10px 14px;
-  font-size: 14px; font-family: 'Noto Sans KR', sans-serif;
-  color: var(--text); outline: none;
-  transition: border-color 0.15s; background: #fafafa;
+  flex:1; border:1.5px solid var(--border); border-radius:10px;
+  padding:10px 14px; font-size:14px; font-family:'Noto Sans KR',sans-serif;
+  color:var(--text); outline:none; transition:border-color 0.15s; background:#fafafa;
 }
-.bs-inp:focus { border-color: var(--accent); background: #fff; }
-.bs-inp::placeholder { color: var(--text3); }
-.bs-add-btn {
-  background: var(--accent); border: none; color: #fff;
-  width: 40px; height: 40px; border-radius: 10px;
-  font-size: 24px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; line-height: 1;
-}
-.bs-add-btn:active { background: #1e3a6e; }
+.bs-inp:focus { border-color:var(--accent); background:#fff; }
+.bs-inp::placeholder { color:var(--text3); }
+.bs-add-btn { background:var(--accent); border:none; color:#fff; width:40px; height:40px; border-radius:10px; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; line-height:1; }
+.bs-add-btn:active { background:#1e3a6e; }
 
-/* ════════════════════════════════════
-   MOBILE MEMO BOTTOM TAB
-════════════════════════════════════ */
+/* Mobile memo sheet */
 .mob-memo-sheet {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--white);
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -4px 30px rgba(0,0,0,0.14);
-  z-index: 402;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
-  height: 70vh;
-  display: flex; flex-direction: column;
+  position:fixed; bottom:0; left:0; right:0; background:var(--white);
+  border-radius:20px 20px 0 0; box-shadow:0 -4px 30px rgba(0,0,0,0.14);
+  z-index:402; transform:translateY(100%);
+  transition:transform 0.3s cubic-bezier(0.32,0.72,0,1);
+  height:70vh; display:flex; flex-direction:column;
 }
-.mob-memo-sheet.show { transform: translateY(0); }
-.mob-memo-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 20px 10px; border-bottom: 1px solid var(--border2); flex-shrink: 0;
-}
-.mob-memo-title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; }
-.mob-memo-close {
-  background: #f0f0f0; border: none; color: var(--text2);
-  width: 28px; height: 28px; border-radius: 50%;
-  font-size: 16px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
-.mob-memo-ta {
-  flex: 1; padding: 16px 20px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14px; line-height: 1.9;
-  border: none; outline: none; resize: none;
-  background: transparent; color: var(--text);
-  caret-color: var(--accent);
-  -webkit-overflow-scrolling: touch;
-}
-.mob-memo-ta::placeholder { color: var(--text3); }
-.mob-memo-foot {
-  padding: 8px 20px 20px;
-  font-size: 11px; color: var(--text3);
-  text-align: right; border-top: 1px solid var(--border2); flex-shrink: 0;
-}
+.mob-memo-sheet.show { transform:translateY(0); }
+.mob-memo-head { display:flex; align-items:center; justify-content:space-between; padding:14px 20px 10px; border-bottom:1px solid var(--border2); flex-shrink:0; }
+.mob-memo-title { font-family:'Inter',sans-serif; font-size:14px; font-weight:600; }
+.mob-memo-close { background:#f0f0f0; border:none; color:var(--text2); width:28px; height:28px; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.mob-memo-ta { flex:1; padding:16px 20px; font-family:'Noto Sans KR',sans-serif; font-size:14px; line-height:1.9; border:none; outline:none; resize:none; background:transparent; color:var(--text); caret-color:var(--accent); -webkit-overflow-scrolling:touch; }
+.mob-memo-ta::placeholder { color:var(--text3); }
+.mob-memo-foot { padding:8px 20px 20px; font-size:11px; color:var(--text3); text-align:right; border-top:1px solid var(--border2); flex-shrink:0; }
 
-/* ── MOBILE BOTTOM NAV ─────────────── */
+/* Mobile nav */
 .mob-nav {
-  display: none;
-  position: fixed; bottom: 0; left: 0; right: 0;
-  height: 56px;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-  z-index: 200;
-  align-items: center; justify-content: space-around;
+  display:none; position:fixed; bottom:0; left:0; right:0;
+  height:56px; background:var(--white); border-top:1px solid var(--border);
+  z-index:200; align-items:center; justify-content:space-around;
 }
-.mob-nav-btn {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 3px; background: none; border: none;
-  cursor: pointer; padding: 6px 0;
-  color: var(--text3); font-family: 'Noto Sans KR', sans-serif;
-  font-size: 10px; transition: color 0.15s;
-}
-.mob-nav-btn:active { color: var(--accent); }
-.mob-nav-icon { font-size: 20px; line-height: 1; }
+.mob-nav-btn { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; background:none; border:none; cursor:pointer; padding:6px 0; color:var(--text3); font-family:'Noto Sans KR',sans-serif; font-size:10px; transition:color 0.15s; }
+.mob-nav-btn:active { color:var(--accent); }
+.mob-nav-icon { font-size:20px; line-height:1; }
 
-/* ════════════════════════════════════
-   CONFIG MODAL
-════════════════════════════════════ */
-.overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.25); backdrop-filter: blur(3px);
-  z-index: 500; align-items: center; justify-content: center;
-}
-.overlay.on { display: flex; }
-.modal {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  width: min(460px, 94vw); padding: 24px;
-  max-height: 88vh; overflow-y: auto; color: var(--text);
-}
+/* Config modal */
+.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.25); backdrop-filter:blur(3px); z-index:500; align-items:center; justify-content:center; }
+.overlay.on { display:flex; }
+.modal { background:var(--white); border:1px solid var(--border); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,0.15); width:min(460px,94vw); padding:24px; max-height:88vh; overflow-y:auto; color:var(--text); }
 .modal-ttl { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; margin-bottom:4px; }
 .modal-sub { font-size:11px; color:var(--text2); margin-bottom:20px; }
 .cs { margin-bottom:16px; }
@@ -529,85 +400,43 @@ body {
 .mbtn-fill { background:var(--accent); border:1px solid var(--accent); color:#fff; font-weight:500; }
 .mbtn-fill:hover { background:#1e3a6e; }
 
-/* TOAST */
-.toast {
-  position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(10px);
-  background:#1a1a1a; border:1px solid #333; color:#fff; padding:8px 18px;
-  border-radius:20px; font-size:11.5px; font-family:'Noto Sans KR',sans-serif;
-  z-index:999; opacity:0; transition:all 0.25s; pointer-events:none;
-}
-.toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
+/* Toast */
+.toast { position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(10px); background:#1a1a1a; border:1px solid #333; color:#fff; padding:8px 18px; border-radius:20px; font-size:11.5px; font-family:'Noto Sans KR',sans-serif; z-index:999; opacity:0; transition:all 0.25s; pointer-events:none; }
+.toast.on  { opacity:1; transform:translateX(-50%) translateY(0); }
 .toast.ok  { background:#166534; border-color:#166534; }
 .toast.err { background:#991b1b; border-color:#991b1b; }
 
 @keyframes spin { to { transform:rotate(360deg); } }
 .spin { display:inline-block; animation:spin 0.8s linear infinite; }
 
-/* ════════════════════════════════════
-   RESPONSIVE — MOBILE (≤ 640px)
-════════════════════════════════════ */
-@media (max-width: 640px) {
-  body { overflow: hidden; }
-
-  .app {
-    padding: 0;
-    flex-direction: column;
-    height: 100%;
-    gap: 0;
-    padding-bottom: 56px; /* nav height */
-  }
-
-  .cal-panel {
-    flex: 1;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid var(--border2);
-    box-shadow: none;
-  }
-
-  .cal-head { padding: 12px 14px 10px; }
-  .cal-title { font-size: 14px; }
-  .nav-btn   { width: 32px; height: 32px; font-size: 17px; }
-  .today-pill { padding: 5px 12px; font-size: 12px; }
-
-  .dow-row { padding: 4px 6px 0; }
-  .dow { font-size: 9.5px; letter-spacing: 0.5px; }
-
-  .cal-grid {
-    padding: 3px 6px 6px;
-    gap: 2px;
-  }
-
-  /* Cells: just show date number + dot if has events */
-  .cell { border-radius: 6px; cursor: pointer; }
-  .cell-body { padding: 0 3px 2px; gap: 1px; }
-
-  .dn { font-size: 12px; min-width: 24px; height: 24px; }
-  .cell.is-today .dn { font-size: 12px; }
-
-  .sl-dot { width: 5px; height: 5px; }
-  .sl-txt { font-size: 9px; }
-  .more-lbl { font-size: 8.5px; }
-
-  /* Hide sync bar on mobile */
-  .sync-bar { display: none; }
-
-  /* Hide desktop memo panel */
-  .memo-panel { display: none; }
-
-  /* Show mobile nav */
-  .mob-nav { display: flex; }
-
-  /* Toast above nav */
-  .toast { bottom: 70px; }
+/* ── RESPONSIVE MOBILE ──────────────── */
+@media (max-width:640px) {
+  body { overflow:hidden; }
+  .app { padding:0; flex-direction:column; height:100%; gap:0; padding-bottom:56px; }
+  .cal-panel { flex:1; border-radius:0; border:none; border-bottom:1px solid var(--border2); box-shadow:none; }
+  .cal-head  { padding:12px 14px 10px; }
+  .cal-title { font-size:14px; }
+  .nav-btn   { width:32px; height:32px; font-size:17px; }
+  .today-pill { padding:5px 12px; font-size:12px; }
+  .dow-row   { padding:4px 6px 0; }
+  .dow       { font-size:9.5px; letter-spacing:0.5px; }
+  .cal-grid  { padding:3px 6px 6px; gap:2px; }
+  .cell      { border-radius:6px; }
+  .dn        { font-size:12px; min-width:24px; height:24px; }
+  .sl-num    { font-size:7.5px; }
+  .sl-txt    { font-size:9px; }
+  .more-lbl  { font-size:8.5px; }
+  .sync-bar  { display:none; }
+  .memo-panel{ display:none; }
+  .mob-nav   { display:flex; }
+  .toast     { bottom:70px; }
+  .day-popup { display:none !important; }
 }
 </style>
 </head>
 <body>
 
 <div class="app">
-
-  <!-- ── CALENDAR ───────────────────── -->
   <div class="cal-panel">
     <div class="cal-head">
       <div class="cal-title" id="calTitle">—</div>
@@ -633,7 +462,6 @@ body {
     </div>
   </div>
 
-  <!-- ── DESKTOP MEMO PANEL ─────────── -->
   <div class="memo-panel">
     <div class="mp-head">
       <div class="mp-title">업무 메모</div>
@@ -643,20 +471,14 @@ body {
   </div>
 </div>
 
-<!-- ── MOBILE BOTTOM NAV ─────────────── -->
+<!-- Mobile nav -->
 <nav class="mob-nav">
-  <button class="mob-nav-btn" onclick="openMobSync()">
-    <span class="mob-nav-icon">↻</span>동기화
-  </button>
-  <button class="mob-nav-btn" onclick="openMobMemo()">
-    <span class="mob-nav-icon">📝</span>메모
-  </button>
-  <button class="mob-nav-btn" onclick="openCfg()">
-    <span class="mob-nav-icon">⚙️</span>설정
-  </button>
+  <button class="mob-nav-btn" onclick="doSync()"><span class="mob-nav-icon">↻</span>동기화</button>
+  <button class="mob-nav-btn" onclick="openMobMemo()"><span class="mob-nav-icon">📝</span>메모</button>
+  <button class="mob-nav-btn" onclick="openCfg()"><span class="mob-nav-icon">⚙️</span>설정</button>
 </nav>
 
-<!-- ── DESKTOP DAY POPUP ─────────────── -->
+<!-- Desktop popup -->
 <div class="day-popup" id="dayPopup">
   <div class="dp-head">
     <div class="dp-date" id="dpDate">—</div>
@@ -669,7 +491,7 @@ body {
   </div>
 </div>
 
-<!-- ── MOBILE BOTTOM SHEET ───────────── -->
+<!-- Mobile bottom sheet -->
 <div class="sheet-backdrop" id="sheetBack" onclick="closeSheet()"></div>
 <div class="bottom-sheet" id="bottomSheet">
   <div class="bs-handle"></div>
@@ -684,7 +506,7 @@ body {
   </div>
 </div>
 
-<!-- ── MOBILE MEMO SHEET ─────────────── -->
+<!-- Mobile memo sheet -->
 <div class="mob-memo-sheet" id="mobMemoSheet">
   <div class="bs-handle" style="margin-bottom:0"></div>
   <div class="mob-memo-head">
@@ -695,17 +517,15 @@ body {
   <div class="mob-memo-foot" id="mobMemoFoot">자동 저장됨</div>
 </div>
 
-<!-- ── CONFIG MODAL ─────────────────── -->
+<!-- Config modal -->
 <div class="overlay" id="cfgOv" onclick="if(event.target===this)closeCfg()">
   <div class="modal">
     <div class="modal-ttl">Google Sheets 연동 설정</div>
     <div class="modal-sub">일정을 Google Sheets에 백업·동기화합니다.</div>
     <div class="cs">
       <div class="cs-lbl">Apps Script 설치</div>
-      <div class="step"><div class="step-n">1</div>
-        <div class="cs-desc"><a href="https://sheets.google.com" target="_blank">Google Sheets</a>에서 새 스프레드시트를 만드세요.</div></div>
-      <div class="step"><div class="step-n">2</div>
-        <div class="cs-desc">확장 프로그램 → Apps Script → 아래 코드 붙여넣기<br>→ 배포 → 웹 앱 → 액세스: <strong>모든 사용자</strong></div></div>
+      <div class="step"><div class="step-n">1</div><div class="cs-desc"><a href="https://sheets.google.com" target="_blank">Google Sheets</a>에서 새 스프레드시트를 만드세요.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="cs-desc">확장 프로그램 → Apps Script → 아래 코드 붙여넣기 → 배포 → 웹 앱 → 액세스: <strong>모든 사용자</strong></div></div>
 <div class="code-box">function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName("events") || ss.insertSheet("events");
@@ -720,8 +540,7 @@ function doPost(e) {
   JSON.parse(e.postData.contents).forEach(r => sh.appendRow(r));
   return ContentService.createTextOutput("OK");
 }</div>
-      <div class="step"><div class="step-n">3</div>
-        <div class="cs-desc">배포 후 생성된 <strong>웹 앱 URL</strong>을 아래에 입력하세요.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="cs-desc">배포 후 생성된 <strong>웹 앱 URL</strong>을 아래에 입력하세요.</div></div>
     </div>
     <div class="cs">
       <div class="cs-lbl">웹 앱 URL</div>
@@ -737,125 +556,125 @@ function doPost(e) {
 <div class="toast" id="toast"></div>
 
 <script>
-// ── STATE ──────────────────────────────────────────
+// ── STATE ───────────────────────────────────────────
 let cy, cm;
+// events[ds] = [{id, text}, ...] — objects with id & text
 let events = {}, memo = '', sheetsUrl = '';
-let popupDs = null;
+let popupDs = null, sheetDs = null;
 const isMob = () => window.innerWidth <= 640;
 
-// ── INIT ───────────────────────────────────────────
+// ── INIT ────────────────────────────────────────────
 (function init() {
   const now = new Date();
   cy = now.getFullYear(); cm = now.getMonth();
-  try { events = JSON.parse(localStorage.getItem('sch_ev') || '{}'); } catch(e){}
-  memo = localStorage.getItem('sch_memo') || '';
-  sheetsUrl = localStorage.getItem('sch_url') || '';
 
-  // Desktop memo sync
-  const ta = document.getElementById('memoTa');
-  ta.value = memo;
-  ta.addEventListener('input', function() { memo = this.value; saveMemo(); flashSave('mpSave'); });
+  // Migrate old string[] format to {id,text}[]
+  const raw = localStorage.getItem('sch_ev');
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      Object.keys(parsed).forEach(ds => {
+        parsed[ds] = parsed[ds].map(v =>
+          typeof v === 'string' ? { id: Date.now() + Math.random(), text: v } : v
+        );
+      });
+      events = parsed;
+    } catch(e) { events = {}; }
+  }
 
-  // Mobile memo sync
+  memo      = localStorage.getItem('sch_memo') || '';
+  sheetsUrl = localStorage.getItem('sch_url')  || '';
+
+  const ta  = document.getElementById('memoTa');
   const mta = document.getElementById('mobMemoTa');
-  mta.value = memo;
-  mta.addEventListener('input', function() { memo = this.value; saveMemo(); flashSave('mobMemoFoot'); });
+  ta.value = mta.value = memo;
+  ta.addEventListener('input',  function(){ memo=this.value; saveMemo(); flashSave('mpSave'); });
+  mta.addEventListener('input', function(){ memo=this.value; saveMemo(); flashSave('mobMemoFoot'); });
 
   if (sheetsUrl) setSyncSt('ok');
   renderCal();
 })();
 
-// ── CALENDAR ───────────────────────────────────────
+// ── CALENDAR RENDER ─────────────────────────────────
 function renderCal() {
-  const MN = ['January','February','March','April','May','June',
-              'July','August','September','October','November','December'];
+  const MN  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   const KMN = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
   document.getElementById('calTitle').innerHTML =
-    isMob()
-      ? `<strong>${cy}</strong> <em>${KMN[cm]}</em>`
-      : `<strong>${cy}</strong> <em>${MN[cm]}</em>`;
+    isMob() ? `<strong>${cy}</strong> <em>${KMN[cm]}</em>`
+            : `<strong>${cy}</strong> <em>${MN[cm]}</em>`;
 
   const grid = document.getElementById('calGrid');
   grid.innerHTML = '';
 
-  const today = new Date();
+  const today    = new Date();
   const firstDow = new Date(cy, cm, 1).getDay();
   const lastDay  = new Date(cy, cm+1, 0).getDate();
   const prevLast = new Date(cy, cm, 0).getDate();
 
   const cells = [];
-  for (let i = firstDow-1; i >= 0; i--) cells.push({d: prevLast-i, mo: cm-1, other: true});
-  for (let d = 1; d <= lastDay; d++)     cells.push({d, mo: cm, other: false});
-  while (cells.length < 42)              cells.push({d: cells.length-firstDow-lastDay+1, mo: cm+1, other: true});
+  for (let i=firstDow-1; i>=0; i--) cells.push({d:prevLast-i, mo:cm-1, other:true});
+  for (let d=1; d<=lastDay; d++)    cells.push({d, mo:cm, other:false});
+  while (cells.length < 42)         cells.push({d:cells.length-firstDow-lastDay+1, mo:cm+1, other:true});
 
   cells.forEach((c, idx) => {
-    const ry  = c.mo < 0 ? cy-1 : c.mo > 11 ? cy+1 : cy;
+    const ry  = c.mo<0 ? cy-1 : c.mo>11 ? cy+1 : cy;
     const rm  = ((c.mo%12)+12)%12;
     const ds  = `${ry}-${pad(rm+1)}-${pad(c.d)}`;
     const isTd = !c.other && c.d===today.getDate() && rm===today.getMonth() && ry===today.getFullYear();
     const dow = idx % 7;
 
     const cell = document.createElement('div');
-    cell.className = ['cell',
-      c.other ? 'other':'', isTd ? 'is-today':'',
-      dow===0 ? 'sun':'',   dow===6 ? 'sat':'',
-    ].filter(Boolean).join(' ');
+    cell.className = ['cell', c.other?'other':'', isTd?'is-today':'', dow===0?'sun':'', dow===6?'sat':''].filter(Boolean).join(' ');
 
-    // Top: date number
+    // Date number
     const top = document.createElement('div'); top.className='cell-top';
     const dn  = document.createElement('div'); dn.className='dn'; dn.textContent=c.d;
     top.appendChild(dn); cell.appendChild(top);
 
-    // Body: schedule previews
+    // Preview
     const body = document.createElement('div'); body.className='cell-body';
     const evts = events[ds] || [];
     const MAX  = isMob() ? 2 : 3;
-    evts.slice(0, MAX).forEach(txt => {
+    evts.slice(0, MAX).forEach((ev, i) => {
       const sl  = document.createElement('div'); sl.className='sl';
-      const dot = document.createElement('div'); dot.className='sl-dot';
-      const t   = document.createElement('span'); t.className='sl-txt'; t.textContent=txt;
-      sl.appendChild(dot); sl.appendChild(t); body.appendChild(sl);
+      const num = document.createElement('span'); num.className='sl-num'; num.textContent=`${i+1}.`;
+      const t   = document.createElement('span'); t.className='sl-txt'; t.textContent=ev.text;
+      sl.appendChild(num); sl.appendChild(t); body.appendChild(sl);
     });
     if (evts.length > MAX) {
       const m = document.createElement('div'); m.className='more-lbl';
-      m.textContent=`+${evts.length-MAX}`; body.appendChild(m);
+      m.textContent=`+${evts.length-MAX}개 더`; body.appendChild(m);
     }
     cell.appendChild(body);
 
-    // Click → popup
     cell.addEventListener('click', () => {
-      if (isMob()) openSheet(ds, cell);
-      else         openPopup(ds, cell);
+      isMob() ? openSheet(ds) : openPopup(ds, cell);
     });
-
     grid.appendChild(cell);
   });
 }
 
-// ── MONTH NAV ──────────────────────────────────────
+// ── MONTH NAV ───────────────────────────────────────
 function chMonth(d) {
-  cm += d;
-  if (cm>11){cm=0;cy++;} if(cm<0){cm=11;cy--;}
-  closePopup(); closeSheet();
-  renderCal();
+  cm+=d; if(cm>11){cm=0;cy++;} if(cm<0){cm=11;cy--;}
+  closePopup(); closeSheet(); renderCal();
 }
 function goToday() {
   const n=new Date(); cy=n.getFullYear(); cm=n.getMonth();
   closePopup(); closeSheet(); renderCal();
 }
 
-// ── DESKTOP POPUP ──────────────────────────────────
+// ── DESKTOP POPUP ────────────────────────────────────
 function openPopup(ds, cellEl) {
   popupDs = ds;
   const popup = document.getElementById('dayPopup');
   if (cellEl) {
-    const r  = cellEl.getBoundingClientRect();
-    const pw = 264, ph = 360;
-    let left = r.right + 6, top = r.top;
+    const r=cellEl.getBoundingClientRect(), pw=300, ph=400;
+    let left=r.right+6, top=r.top;
     if (left+pw > window.innerWidth-10)  left = r.left-pw-6;
     if (top+ph  > window.innerHeight-10) top  = window.innerHeight-ph-10;
     if (top < 10) top = 10;
-    popup.style.left = left+'px'; popup.style.top = top+'px';
+    popup.style.left=left+'px'; popup.style.top=top+'px';
   }
   renderPopup(ds);
   popup.classList.add('show');
@@ -864,34 +683,104 @@ function openPopup(ds, cellEl) {
 
 function renderPopup(ds) {
   const WD=['일','월','화','수','목','금','토'];
-  const [y,m,d] = ds.split('-');
-  const dow = new Date(+y,+m-1,+d).getDay();
-  document.getElementById('dpDate').innerHTML = `${+m}월 ${+d}일 <span>${WD[dow]}요일</span>`;
+  const [y,m,d]=ds.split('-');
+  const dow=new Date(+y,+m-1,+d).getDay();
+  document.getElementById('dpDate').innerHTML=`${+m}월 ${+d}일 <span>${WD[dow]}요일</span>`;
 
-  const list = document.getElementById('dpList');
-  const evts = events[ds] || [];
+  const list=document.getElementById('dpList');
+  const evts=events[ds]||[];
   if (!evts.length) { list.innerHTML='<div class="dp-empty">일정이 없습니다</div>'; return; }
-  list.innerHTML = '';
-  evts.forEach((txt,i) => {
-    const item = document.createElement('div'); item.className='dp-item';
-    const bul  = document.createElement('div'); bul.className='dp-bullet';
-    const t    = document.createElement('div'); t.className='dp-txt'; t.textContent=txt;
-    t.addEventListener('click', ()=>dpEditItem(ds,i,t));
-    const del  = document.createElement('button'); del.className='dp-del'; del.textContent='×';
-    del.addEventListener('click', ()=>{ removeEv(ds,i); renderPopup(ds); });
-    item.appendChild(bul); item.appendChild(t); item.appendChild(del);
+
+  list.innerHTML='';
+  evts.forEach((ev, i) => {
+    const item = makeDpItem(ds, ev, i, evts.length);
     list.appendChild(item);
+  });
+  initDragDesktop(ds);
+}
+
+function makeDpItem(ds, ev, i, total) {
+  const item = document.createElement('div');
+  item.className='dp-item';
+  item.dataset.idx = i;
+
+  // Drag handle
+  const drag = document.createElement('div'); drag.className='dp-drag';
+  drag.innerHTML='⠿'; drag.title='드래그해서 순서 변경';
+
+  // Serial number
+  const num = document.createElement('div'); num.className='dp-num'; num.textContent=i+1;
+
+  // Text — full content, wraps
+  const t = document.createElement('div'); t.className='dp-txt'; t.textContent=ev.text;
+  t.addEventListener('click', ()=>dpEditItem(ds, i, t));
+
+  // Delete
+  const del = document.createElement('button'); del.className='dp-del'; del.textContent='×';
+  del.addEventListener('click', ()=>{ removeEv(ds,i); renderPopup(ds); });
+
+  item.appendChild(drag); item.appendChild(num); item.appendChild(t); item.appendChild(del);
+  return item;
+}
+
+// ── DESKTOP DRAG & DROP ──────────────────────────────
+function initDragDesktop(ds) {
+  const list = document.getElementById('dpList');
+  let dragIdx = null;
+
+  list.querySelectorAll('.dp-item').forEach(item => {
+    const handle = item.querySelector('.dp-drag');
+
+    handle.addEventListener('mousedown', e => {
+      e.preventDefault();
+      dragIdx = +item.dataset.idx;
+      item.classList.add('dragging');
+
+      const onMove = ev => {
+        const els = [...list.querySelectorAll('.dp-item:not(.dragging)')];
+        list.querySelectorAll('.dp-item').forEach(el => el.classList.remove('drag-over'));
+        const target = els.find(el => {
+          const r = el.getBoundingClientRect();
+          return ev.clientY >= r.top && ev.clientY <= r.bottom;
+        });
+        if (target) target.classList.add('drag-over');
+      };
+
+      const onUp = ev => {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        item.classList.remove('dragging');
+
+        const over = list.querySelector('.dp-item.drag-over');
+        if (over) {
+          const toIdx = +over.dataset.idx;
+          over.classList.remove('drag-over');
+          if (dragIdx !== toIdx) {
+            const arr = events[ds];
+            const [moved] = arr.splice(dragIdx, 1);
+            arr.splice(toIdx, 0, moved);
+            saveEv(); renderCal(); renderPopup(ds);
+          }
+        }
+        dragIdx = null;
+      };
+
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup',   onUp);
+    });
   });
 }
 
 function dpEditItem(ds, idx, el) {
   const inp = document.createElement('input');
   inp.style.cssText='flex:1;border:1px solid var(--accent);border-radius:5px;padding:3px 7px;font-size:12px;font-family:inherit;color:var(--text);outline:none;background:#fff;width:100%';
-  inp.value = events[ds][idx];
+  inp.value=events[ds][idx].text;
   el.replaceWith(inp); inp.focus(); inp.select();
   let done=false;
-  function commit(){ if(done)return;done=true; const v=inp.value.trim();
-    if(v){events[ds][idx]=v;}else{events[ds].splice(idx,1);if(!events[ds].length)delete events[ds];}
+  function commit(){ if(done)return;done=true;
+    const v=inp.value.trim();
+    if(v){ events[ds][idx].text=v; }
+    else { events[ds].splice(idx,1); if(!events[ds].length)delete events[ds]; }
     saveEv();renderCal();renderPopup(ds); }
   inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();commit();} if(e.key==='Escape'){done=true;renderPopup(ds);} });
   inp.addEventListener('blur',commit);
@@ -900,14 +789,15 @@ function dpEditItem(ds, idx, el) {
 function dpAddEvent() {
   const inp=document.getElementById('dpInp'), v=inp.value.trim();
   if(!v)return;
-  if(!events[popupDs])events[popupDs]=[];
-  events[popupDs].push(v); inp.value='';
-  saveEv();renderCal();renderPopup(popupDs);
+  if(!events[popupDs]) events[popupDs]=[];
+  events[popupDs].push({id:Date.now(), text:v});
+  inp.value=''; saveEv(); renderCal(); renderPopup(popupDs);
   inp.focus();
 }
 function dpKeydown(e){ if(e.key==='Enter'){e.preventDefault();dpAddEvent();} if(e.key==='Escape')closePopup(); }
-function closePopup(){ document.getElementById('dayPopup').classList.remove('show'); popupDs=null; }
-
+function closePopup(){
+  document.getElementById('dayPopup').classList.remove('show'); popupDs=null;
+}
 document.addEventListener('click', e=>{
   const p=document.getElementById('dayPopup');
   if(!p.classList.contains('show'))return;
@@ -916,11 +806,9 @@ document.addEventListener('click', e=>{
   closePopup();
 });
 
-// ── MOBILE BOTTOM SHEET ────────────────────────────
-let sheetDs = null;
-
-function openSheet(ds, cellEl) {
-  sheetDs = ds;
+// ── MOBILE BOTTOM SHEET ──────────────────────────────
+function openSheet(ds) {
+  sheetDs=ds;
   renderSheet(ds);
   document.getElementById('sheetBack').classList.add('show');
   document.getElementById('bottomSheet').classList.add('show');
@@ -929,47 +817,97 @@ function openSheet(ds, cellEl) {
 
 function renderSheet(ds) {
   const WD=['일','월','화','수','목','금','토'];
-  const [y,m,d] = ds.split('-');
-  const dow = new Date(+y,+m-1,+d).getDay();
-  document.getElementById('bsDate').innerHTML = `${+m}월 ${+d}일 <span>${WD[dow]}요일</span>`;
+  const [y,m,d]=ds.split('-');
+  const dow=new Date(+y,+m-1,+d).getDay();
+  document.getElementById('bsDate').innerHTML=`${+m}월 ${+d}일 <span>${WD[dow]}요일</span>`;
 
-  const list = document.getElementById('bsList');
-  const evts = events[ds] || [];
-  if (!evts.length) { list.innerHTML='<div class="bs-empty">일정이 없습니다<br>아래에서 추가해보세요 ✏️</div>'; return; }
+  const list=document.getElementById('bsList');
+  const evts=events[ds]||[];
+  if(!evts.length){ list.innerHTML='<div class="bs-empty">일정이 없습니다<br>아래에서 추가해보세요 ✏️</div>'; return; }
+
   list.innerHTML='';
-  evts.forEach((txt,i)=>{
-    const item=document.createElement('div'); item.className='bs-item';
-    const bul=document.createElement('div'); bul.className='bs-bullet';
-    const t=document.createElement('div'); t.className='bs-txt'; t.textContent=txt;
-    // tap to edit on mobile
+  evts.forEach((ev,i)=>{
+    const item=document.createElement('div'); item.className='bs-item'; item.dataset.idx=i;
+
+    const drag=document.createElement('div'); drag.className='bs-drag'; drag.innerHTML='⠿';
+    const num=document.createElement('div'); num.className='bs-num'; num.textContent=i+1;
+    const t=document.createElement('div'); t.className='bs-txt'; t.textContent=ev.text;
     t.addEventListener('click',()=>bsEditItem(ds,i,t));
     const del=document.createElement('button'); del.className='bs-del'; del.textContent='×';
     del.addEventListener('click',()=>{ removeEv(ds,i); renderSheet(ds); });
-    item.appendChild(bul); item.appendChild(t); item.appendChild(del);
+
+    item.appendChild(drag); item.appendChild(num); item.appendChild(t); item.appendChild(del);
     list.appendChild(item);
+  });
+  initDragMobile(ds);
+}
+
+// ── MOBILE DRAG (touch) ──────────────────────────────
+function initDragMobile(ds) {
+  const list=document.getElementById('bsList');
+  let dragIdx=null, dragEl=null;
+
+  list.querySelectorAll('.bs-item').forEach(item=>{
+    const handle=item.querySelector('.bs-drag');
+    handle.addEventListener('touchstart', e=>{
+      e.preventDefault();
+      dragIdx=+item.dataset.idx; dragEl=item;
+      item.classList.add('dragging');
+    }, {passive:false});
+  });
+
+  list.addEventListener('touchmove', e=>{
+    if(dragIdx===null)return;
+    e.preventDefault();
+    const touch=e.touches[0];
+    list.querySelectorAll('.bs-item').forEach(el=>el.classList.remove('drag-over'));
+    const els=[...list.querySelectorAll('.bs-item:not(.dragging)')];
+    const target=els.find(el=>{
+      const r=el.getBoundingClientRect();
+      return touch.clientY>=r.top && touch.clientY<=r.bottom;
+    });
+    if(target) target.classList.add('drag-over');
+  }, {passive:false});
+
+  list.addEventListener('touchend', e=>{
+    if(dragIdx===null)return;
+    if(dragEl) dragEl.classList.remove('dragging');
+    const over=list.querySelector('.bs-item.drag-over');
+    if(over){
+      const toIdx=+over.dataset.idx;
+      over.classList.remove('drag-over');
+      if(dragIdx!==toIdx){
+        const arr=events[ds];
+        const [moved]=arr.splice(dragIdx,1);
+        arr.splice(toIdx,0,moved);
+        saveEv();renderCal();renderSheet(ds);
+      }
+    }
+    dragIdx=null; dragEl=null;
   });
 }
 
-function bsEditItem(ds, idx, el) {
+function bsEditItem(ds,idx,el){
   const inp=document.createElement('input');
   inp.style.cssText='flex:1;border:1.5px solid var(--accent);border-radius:8px;padding:8px 12px;font-size:14px;font-family:inherit;color:var(--text);outline:none;background:#fff;width:100%';
-  inp.value=events[ds][idx];
+  inp.value=events[ds][idx].text;
   el.replaceWith(inp); inp.focus(); inp.select();
   let done=false;
-  function commit(){ if(done)return;done=true; const v=inp.value.trim();
-    if(v){events[ds][idx]=v;}else{events[ds].splice(idx,1);if(!events[ds].length)delete events[ds];}
+  function commit(){ if(done)return;done=true;
+    const v=inp.value.trim();
+    if(v){events[ds][idx].text=v;}
+    else{events[ds].splice(idx,1);if(!events[ds].length)delete events[ds];}
     saveEv();renderCal();renderSheet(ds); }
   inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();commit();} });
   inp.addEventListener('blur',commit);
 }
 
-function bsAddEvent() {
+function bsAddEvent(){
   const inp=document.getElementById('bsInp'), v=inp.value.trim();
   if(!v)return;
-  if(!events[sheetDs])events[sheetDs]=[];
-  events[sheetDs].push(v); inp.value='';
-  saveEv();renderCal();renderSheet(sheetDs);
-  inp.focus();
+  if(!events[sheetDs]) events[sheetDs]=[];
+  events[sheetDs].push({id:Date.now(), text:v});
+  inp.value=''; saveEv();renderCal();renderSheet(sheetDs); inp.focus();
 }
 function bsKeydown(e){ if(e.key==='Enter'){e.preventDefault();bsAddEvent();} }
 function closeSheet(){
@@ -978,57 +916,21 @@ function closeSheet(){
   sheetDs=null;
 }
 
-// ── MOBILE MEMO ────────────────────────────────────
-function openMobMemo() {
-  document.getElementById('mobMemoTa').value = memo;
+// ── MOBILE MEMO ──────────────────────────────────────
+function openMobMemo(){
+  document.getElementById('mobMemoTa').value=memo;
   document.getElementById('mobMemoSheet').classList.add('show');
-  setTimeout(()=>document.getElementById('mobMemoTa').focus(), 320);
+  setTimeout(()=>document.getElementById('mobMemoTa').focus(),320);
 }
-function closeMobMemo() { document.getElementById('mobMemoSheet').classList.remove('show'); }
-function openMobSync() { doSync(); }
+function closeMobMemo(){ document.getElementById('mobMemoSheet').classList.remove('show'); }
 
-// ── SAVE ───────────────────────────────────────────
-function saveEv()   { localStorage.setItem('sch_ev', JSON.stringify(events)); }
-function saveMemo() {
-  localStorage.setItem('sch_memo', memo);
-  // Keep both textareas in sync
-  document.getElementById('memoTa').value = memo;
-  document.getElementById('mobMemoTa').value = memo;
+// ── SAVE ─────────────────────────────────────────────
+function saveEv(){ localStorage.setItem('sch_ev', JSON.stringify(events)); }
+function saveMemo(){
+  localStorage.setItem('sch_memo',memo);
+  document.getElementById('memoTa').value=memo;
+  document.getElementById('mobMemoTa').value=memo;
 }
-
-// ── SYNC ───────────────────────────────────────────
-function setSyncSt(s) {
-  const dot=document.getElementById('syncDot'), txt=document.getElementById('syncTxt');
-  if(s==='ok') {dot.className='sync-dot ok'; txt.textContent='연동됨';}
-  else if(s==='err'){dot.className='sync-dot err'; txt.textContent='오류';}
-  else if(s==='ing'){dot.className='sync-dot'; txt.textContent='동기화 중…';}
-  else {dot.className='sync-dot'; txt.textContent='미연동';}
-}
-async function doSync() {
-  if(!sheetsUrl){ toast('설정에서 URL을 입력하세요','err'); openCfg(); return; }
-  const ic=document.getElementById('syncIc');
-  ic.classList.add('spin'); setSyncSt('ing');
-  try {
-    const rows=[['date','text']];
-    Object.entries(events).forEach(([d,arr])=>arr.forEach(t=>rows.push([d,t])));
-    rows.push(['__memo__',memo]);
-    const r=await fetch(sheetsUrl,{method:'POST',body:JSON.stringify(rows),headers:{'Content-Type':'application/json'}});
-    if(!r.ok)throw 0;
-    setSyncSt('ok'); toast('동기화 완료 ✓','ok');
-  } catch { setSyncSt('err'); toast('동기화 실패 — URL 확인','err'); }
-  ic.classList.remove('spin');
-}
-
-// ── CONFIG ─────────────────────────────────────────
-function openCfg() { document.getElementById('cfgUrl').value=sheetsUrl; document.getElementById('cfgOv').classList.add('on'); }
-function closeCfg() { document.getElementById('cfgOv').classList.remove('on'); }
-function saveCfg() {
-  sheetsUrl=document.getElementById('cfgUrl').value.trim();
-  localStorage.setItem('sch_url',sheetsUrl);
-  closeCfg(); if(sheetsUrl)setSyncSt('ok'); toast('설정 저장됨','ok');
-}
-
-// ── HELPERS ────────────────────────────────────────
 function removeEv(ds,idx){
   if(!events[ds])return;
   events[ds].splice(idx,1);
@@ -1036,10 +938,42 @@ function removeEv(ds,idx){
   saveEv();renderCal();
 }
 
+// ── SYNC ─────────────────────────────────────────────
+function setSyncSt(s){
+  const dot=document.getElementById('syncDot'),txt=document.getElementById('syncTxt');
+  if(s==='ok'){dot.className='sync-dot ok';txt.textContent='연동됨';}
+  else if(s==='err'){dot.className='sync-dot err';txt.textContent='오류';}
+  else if(s==='ing'){dot.className='sync-dot';txt.textContent='동기화 중…';}
+  else{dot.className='sync-dot';txt.textContent='미연동';}
+}
+async function doSync(){
+  if(!sheetsUrl){ toast('설정에서 URL을 입력하세요','err'); openCfg(); return; }
+  const ic=document.getElementById('syncIc');
+  ic.classList.add('spin'); setSyncSt('ing');
+  try {
+    const rows=[['date','no','text']];
+    Object.entries(events).forEach(([d,arr])=>arr.forEach((ev,i)=>rows.push([d,i+1,ev.text])));
+    rows.push(['__memo__','',memo]);
+    const r=await fetch(sheetsUrl,{method:'POST',body:JSON.stringify(rows),headers:{'Content-Type':'application/json'}});
+    if(!r.ok)throw 0;
+    setSyncSt('ok'); toast('동기화 완료 ✓','ok');
+  } catch { setSyncSt('err'); toast('동기화 실패 — URL 확인','err'); }
+  ic.classList.remove('spin');
+}
+
+// ── CONFIG ───────────────────────────────────────────
+function openCfg(){ document.getElementById('cfgUrl').value=sheetsUrl; document.getElementById('cfgOv').classList.add('on'); }
+function closeCfg(){ document.getElementById('cfgOv').classList.remove('on'); }
+function saveCfg(){
+  sheetsUrl=document.getElementById('cfgUrl').value.trim();
+  localStorage.setItem('sch_url',sheetsUrl);
+  closeCfg(); if(sheetsUrl)setSyncSt('ok'); toast('설정 저장됨','ok');
+}
+
+// ── HELPERS ──────────────────────────────────────────
 let saveTimer={};
-function flashSave(id) {
-  const el=document.getElementById(id);
-  if(!el)return;
+function flashSave(id){
+  const el=document.getElementById(id); if(!el)return;
   if(id==='mpSave'){el.textContent='저장 중…';el.classList.add('flash');}
   else el.textContent='저장 중…';
   clearTimeout(saveTimer[id]);
@@ -1048,7 +982,6 @@ function flashSave(id) {
     else el.textContent='자동 저장됨';
   },800);
 }
-
 let toastTimer;
 function toast(msg,type=''){
   const el=document.getElementById('toast');
@@ -1056,11 +989,8 @@ function toast(msg,type=''){
   clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>el.className='toast',2500);
 }
-
 function pad(n){ return String(n).padStart(2,'0'); }
-
-// Resize: re-render on orientation change
-window.addEventListener('resize', ()=>{ closePopup(); renderCal(); });
+window.addEventListener('resize',()=>{ closePopup(); renderCal(); });
 </script>
 </body>
 </html>
